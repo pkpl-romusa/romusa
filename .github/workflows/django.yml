@@ -1,4 +1,4 @@
-name: Django CI
+name: Django CI/CD ROMUSA
 
 on:
   push:
@@ -7,23 +7,32 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Tarik kode dari Repo
+    - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Siapin lingkungan Python
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
-    - name: Install semua library
+    - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install flake8  
+        
+    - name: Lint with flake8
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-    - name: Tes jalanin sistem Django
+    - name: Django System Check
       run: |
         python manage.py check
+
+    - name: Run Tests
+      run: |
+        python manage.py test
