@@ -1,4 +1,4 @@
-*+Kelompok : ROMUSA (rombongan muka susah)**
+**Kelompok : ROMUSA (rombongan muka susah)**
 
 1) Aryandana Pascua Patiung - 2406438214
 2) Julius Albert Wirayuda - 2406425792
