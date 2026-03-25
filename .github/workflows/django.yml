@@ -1,0 +1,29 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Tarik kode dari Repo
+      uses: actions/checkout@v4
+
+    - name: Siapin lingkungan Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install semua library
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Tes jalanin sistem Django
+      run: |
+        python manage.py check
