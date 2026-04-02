@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     
     #apps
     'biodata',
-    'auth',
+    'accounts',
     
     #kebutuhan auth
     'django.contrib.sites',
