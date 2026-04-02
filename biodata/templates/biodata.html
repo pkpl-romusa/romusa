@@ -1,0 +1,48 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biodata Kelompok</title>
+</head>
+<body>
+    <h1>Tugas Keamanan Perangkat Lunak - Biodata Kelompok</h1>
+
+    {% if user.is_authenticated %}
+        <p>Status: Login sebagai <strong>{{ user.first_name }}</strong> ({{ user.email }})</p>
+        <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <p>Anda saat ini sebagai Guest (Tamu).</p>
+        <a href="{% provider_login_url 'google' %}">
+            <button>Login with Google</button>
+        </a>
+    {% endif %}
+
+    <hr>
+
+    <h2>Anggota Kelompok:</h2>
+    <ul>
+        <li>Firos Aqiela Zufa</li>
+        <li>Anggota 2</li>
+    </ul>
+
+    {% if is_group_member %}
+        <div style="background-color: #e8f5e9; padding: 15px; border: 2px solid #4caf50; margin-top: 20px;">
+            <h3>🛠️ Otorisasi Berhasil: Panel Kontrol Admin</h3>
+            <p>Karena email Anda terdaftar sebagai kelompok, Anda dapat mengubah tampilan ini:</p>
+            <button onclick="document.body.style.backgroundColor = '#333'; document.body.style.color = '#fff';">Mode Gelap</button>
+            <button onclick="document.body.style.backgroundColor = '#fff'; document.body.style.color = '#000';">Mode Terang</button>
+            <button onclick="document.body.style.fontFamily = 'Courier New';">Ubah Font</button>
+        </div>
+    {% else %}
+        {% if user.is_authenticated %}
+            <p style="color: red; margin-top: 20px;">
+                <i>*Anda terautentikasi (login), namun Anda bukan anggota kelompok. Akses panel perubahan UI ditolak.</i>
+            </p>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>
