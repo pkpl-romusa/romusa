@@ -3,6 +3,11 @@
 GROUP_EMAILS = [
     'firoszufa20@gmail.com',
     'firos.aqiela@ui.ac.id',
+    'amadiojuno52@gmail.co',
+    'salsabila1852@gmail.com',
+    'yanryananda@gmail.com',
+    'jawirayuda@gmail.com',
+    
 
 ]
 
