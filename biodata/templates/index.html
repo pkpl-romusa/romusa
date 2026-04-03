@@ -1,0 +1,111 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROMUSA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body id="main-body" class="{{ class_tema_aktif }} {{ class_font_aktif }}">
+
+    <main class="container">
+        <header class="hero">
+            <span class="badge">Tugas 2 - Pengantar Keamanan Perangkat Lunak</span>
+            <h1>Tim ROMUSA</h1>
+            <p>Membangun sistem yang aman dimulai dari fondasi yang transparan.</p>
+        </header>
+
+        <section class="team-grid">
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag ui-role">UI/UX</span>
+                    <img src="{% static 'images/person_a.jpeg' %}" alt="Foto Person A" class="avatar-image">
+                </div>
+                <h3>Julius Albert Wirayuda</h3>
+                <p class="npm">2406425792</p>
+                <p class="desc">Merancang antarmuka yang intuitif dan memastikan pengalaman pengguna yang mulus.</p>
+            </div>
+
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag authn-role">AuthN</span>
+                    <img src="{% static 'images/person_b.jpg' %}" alt="Foto Person B" class="avatar-image">
+                </div>
+                <h3>Firos Aqiela Zufa</h3>
+                <p class="npm">2406412972</p>
+                <p class="desc">Mengamankan gerbang masuk sistem dengan implementasi Google OAuth 2.0.</p>
+            </div>
+
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag authz-role">AuthZ</span>
+                    <img src="{% static 'images/person_c.jpg' %}" alt="Foto Person C" class="avatar-image">
+                </div>
+                <h3>Salsabila Salimah</h3>
+                <p class="npm">2406432734</p>
+                <p class="desc">Mengatur kontrol akses dan hak istimewa pengguna berbasis domain.</p>
+            </div>
+
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag qa-role">QA & Docs</span>
+                    <img src="{% static 'images/person_d.jpg' %}" alt="Foto Person D" class="avatar-image">
+                </div>
+                <h3>Amadio Juno Trisanto </h3>
+                <p class="npm">2406496416</p>
+                <p class="desc">Memastikan kualitas sistem bebas *bug* dan menyusun dokumentasi teknis.</p>
+            </div>
+
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag devops-role">DevOps</span>
+                    <img src="{% static 'images/person_e.jpg' %}" alt="Foto Person E" class="avatar-image">
+                </div>
+                <h3>Aryandana Pascua Patiung</h3>
+                <p class="npm">2406438214</p>
+                <p class="desc">Mengelola infrastruktur, CI/CD, dan menjaga integritas repositori kode.</p>
+            </div>
+        </section>
+        {% if not user.is_authenticated %}
+        <section class="auth-section">
+            <div class="auth-container">
+                <h2>Restricted Area</h2>
+                <p>Login menggunakan akun ROMUSA untuk mengakses panel kontrol.</p>
+                <a href="{% provider_login_url 'google' %}" class="btn-google">
+                    ... Lanjutkan dengan Google
+                </a>
+            </div>
+        </section>
+        {% endif %}
+    </main>
+
+    {% if is_group_member %}
+    <aside class="control-panel">
+        <div class="panel-content">
+            <div class="panel-info">
+                <span class="status-dot"></span>
+                <p>Akses Admin: {{ user.first_name }}</p>
+            </div>
+            <div class="panel-actions">
+                <form method="POST" action="{% url 'ubah_tampilan' %}">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="ganti_tema" class="btn-action">Mode Tampilan</button>
+                    <button type="submit" name="action" value="ganti_font" class="btn-action">Ubah Tipografi</button>
+                </form>
+
+                <form method="post" action="{% url 'account_logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-action" style="background-color: #ff4c4c; color: white;">Logout</button>
+                </form>
+            </div>
+        </div>
+    </aside>
+    {% endif %}
+
+</body>
+</html>
