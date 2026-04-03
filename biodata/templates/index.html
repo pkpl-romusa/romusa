@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROMUSA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body id="main-body" class="{{ class_tema_aktif }} {{ class_font_aktif }}">
+
+    <main class="container">
+        <header class="hero">
+            <span class="badge">Tugas 2 - Pengantar Keamanan Perangkat Lunak</span>
+            <h1>Tim ROMUSA</h1>
+            <p>Membangun sistem yang aman dimulai dari fondasi yang transparan.</p>
+        </header>
+
+        <section class="team-grid">
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag ui-role">UI/UX</span>
+                    <img src="{% static 'images/person_a.jpeg' %}" alt="Foto Person A" class="avatar-image">
+                </div>
+                <h3>Julius Albert Wirayuda</h3>
+                <p class="npm">2406425792</p>
+                <p class="desc">Merancang antarmuka yang intuitif dan memastikan pengalaman pengguna yang mulus.</p>
+            </div>
+
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag authn-role">AuthN</span>
+                    <img src="{% static 'images/person_b.jpg' %}" alt="Foto Person B" class="avatar-image">
+                </div>
+                <h3>Firos Aqiela Zufa</h3>
+                <p class="npm">2406412972</p>
+                <p class="desc">Mengamankan gerbang masuk sistem dengan implementasi Google OAuth 2.0.</p>
+            </div>
+
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag authz-role">AuthZ</span>
+                    <img src="{% static 'images/person_c.jpg' %}" alt="Foto Person C" class="avatar-image">
+                </div>
+                <h3>Salsabila Salimah</h3>
+                <p class="npm">2406432734</p>
+                <p class="desc">Mengatur kontrol akses dan hak istimewa pengguna berbasis domain.</p>
+            </div>
+
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag qa-role">QA & Docs</span>
+                    <img src="{% static 'images/person_d.jpg' %}" alt="Foto Person D" class="avatar-image">
+                </div>
+                <h3>Amadio Juno Trisanto </h3>
+                <p class="npm">2406496416</p>
+                <p class="desc">Memastikan kualitas sistem bebas *bug* dan menyusun dokumentasi teknis.</p>
+            </div>
+
+            <div class="team-card">
+                <div class="card-header">
+                    <span class="role-tag devops-role">DevOps</span>
+                    <img src="{% static 'images/person_e.jpg' %}" alt="Foto Person E" class="avatar-image">
+                </div>
+                <h3>Aryandana Pascua Patiung</h3>
+                <p class="npm">2406438214</p>
+                <p class="desc">Mengelola infrastruktur, CI/CD, dan menjaga integritas repositori kode.</p>
+            </div>
+        </section>
+
+        <section class="auth-section">
+            <div class="auth-container">
+                <h2>Restricted Area</h2>
+                <p>Login menggunakan akun ROMUSA untuk mengakses panel kontrol.</p>
+                <a href="#" class="btn-google">
+                    <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Lanjutkan dengan Google
+                </a>
+            </div>
+        </section>
+    </main>
+
+    {% if user.is_authenticated %}
+    <aside class="control-panel">
+        <div class="panel-content">
+            <div class="panel-info">
+                <span class="status-dot"></span>
+                <p>Akses Admin: {{ user.first_name }}</p>
+            </div>
+            <div class="panel-actions">
+                <form method="POST" action="{% url 'ubah_tampilan' %}">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="ganti_tema" class="btn-action">Mode Tampilan</button>
+                    <button type="submit" name="action" value="ganti_font" class="btn-action">Ubah Tipografi</button>
+                </form>
+            </div>
+        </div>
+    </aside>
+    {% endif %}
+
+</body>
+</html>

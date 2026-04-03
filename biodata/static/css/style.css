@@ -1,0 +1,342 @@
+/* --- CSS Reset & Variables --- */
+:root {
+    /* Light Theme (Default) */
+    --bg-main: #F8FAFC;
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+    --card-bg: #FFFFFF;
+    --border-color: #E2E8F0;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+    
+    /* Fonts */
+    --font-primary: 'Plus Jakarta Sans', sans-serif;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Accents */
+    --accent-blue: #3B82F6;
+    --accent-indigo: #6366F1;
+    --accent-teal: #14B8A6;
+    --accent-rose: #F43F5E;
+    --accent-amber: #F59E0B;
+}
+
+/* --- Dark Theme Trigger --- */
+.dark-theme {
+    --bg-main: #0F172A;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --card-bg: #1E293B;
+    --border-color: #334155;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Serif Theme Trigger --- */
+.serif-theme {
+    --font-primary: 'Playfair Display', serif;
+    --font-heading: 'Playfair Display', serif;
+}
+
+/* Membuat title jadi italic khusus saat mode Serif aktif */
+.serif-theme h1 {
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* --- Global Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease, font-family 0.4s ease;
+    padding-bottom: 120px; 
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    transition: font-family 0.4s ease, font-style 0.4s ease;
+}
+
+/* --- Global Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    padding-bottom: 120px;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    transition: font-family 0.4s ease;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 24px;
+}
+
+/* --- Hero Section --- */
+.hero {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    margin-bottom: 16px;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Team Cards --- */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+    justify-content: center;
+}
+
+.team-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 32px 24px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+    
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.role-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.ui-role { background: rgba(59, 130, 246, 0.1); color: var(--accent-blue); }
+.authn-role { background: rgba(99, 102, 241, 0.1); color: var(--accent-indigo); }
+.authz-role { background: rgba(20, 184, 166, 0.1); color: var(--accent-teal); }
+.qa-role { background: rgba(244, 63, 94, 0.1); color: var(--accent-rose); }
+.devops-role { background: rgba(245, 158, 11, 0.1); color: var(--accent-amber); }
+
+
+.avatar-image {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    
+    object-fit: cover; 
+    
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+.team-card:hover .avatar-image {
+    transform: scale(1.08); 
+    box-shadow: 0 16px 24px rgba(0,0,0,0.15); 
+}
+
+.team-card h3 {
+    font-size: 1.4rem; 
+    margin-bottom: 8px;
+    line-height: 1.3; 
+    
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.npm {
+    font-family: monospace;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+.desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    flex-grow: 1; 
+}
+
+/* --- Auth Section --- */
+.auth-section {
+    display: flex;
+    justify-content: center;
+}
+
+.auth-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.auth-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.auth-container p {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 24px;
+    background-color: #FFFFFF;
+    color: #3C4043;
+    border: 1px solid #DADCE0;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-google:hover {
+    background-color: #F8F9FA;
+    box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+}
+
+.dark-theme .btn-google {
+    background-color: #FFFFFF;
+}
+
+/* --- Control Panel (Glassmorphism) --- */
+.control-panel {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 48px);
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 16px 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    z-index: 100;
+    transition: background 0.4s ease, border 0.4s ease;
+}
+
+.dark-theme .control-panel {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panel-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.panel-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-teal);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-teal);
+}
+
+.panel-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-action {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.btn-action:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-main);
+}
