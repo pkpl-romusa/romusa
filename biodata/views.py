@@ -18,22 +18,23 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def ubah_tampilan(request):
+def ubah_tampilan_tema(request):
     if request.method == 'POST':
-        action = request.POST.get('action')
 
-        if action == 'ganti_tema':
-            tema_sekarang = request.session.get('tema_css', '')
-            if tema_sekarang == '':
-                request.session['tema_css'] = 'dark-theme'
-            else:
-                request.session['tema_css'] = ''
+        tema_sekarang = request.session.get('tema_css', '')
+        if tema_sekarang == '':
+            request.session['tema_css'] = 'dark-theme'
+        else:
+            request.session['tema_css'] = ''
+    return redirect('index')
+    
+def ubah_tampilan_font(request):
+    if request.method == 'POST':
 
-        elif action == 'ganti_font':
-            font_sekarang = request.session.get('font_css', '')
-            if font_sekarang == '':
-                request.session['font_css'] = 'serif-theme'
-            else:
-                request.session['font_css'] = ''
+        font_sekarang = request.session.get('font_css', '')
+        if font_sekarang == '':
+            request.session['font_css'] = 'serif-theme'
+        else:
+            request.session['font_css'] = ''
 
     return redirect('index')

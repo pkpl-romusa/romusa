@@ -109,9 +109,13 @@
                 <p>Akses Admin: {{ user.first_name }}</p>
             </div>
             <div class="panel-actions">
-                <form method="POST" action="{% url 'ubah_tampilan' %}">
+                <form method="POST" action="{% url 'ubah_tampilan_tema' %}">
                     {% csrf_token %}
                     <button type="submit" name="action" value="ganti_tema" class="btn-action">Mode Tampilan</button>
+                </form>
+
+                <form method="POST" action="{% url 'ubah_tampilan_font' %}">
+                    {% csrf_token %}
                     <button type="submit" name="action" value="ganti_font" class="btn-action">Ubah Tipografi</button>
                 </form>
 
